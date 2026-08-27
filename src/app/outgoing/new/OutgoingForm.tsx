@@ -3,9 +3,12 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function OutgoingForm({ users, departments }: { users: any[], departments: any[] }) {
+export default function OutgoingForm({ users, departments, currentUser }: { users: any[], departments: any[], currentUser?: string }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+
+  // Filter users to only include the current user so they can only select themselves
+  const selectableUsers = users.filter((u: any) => u.name === currentUser);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,11 +33,14 @@ export default function OutgoingForm({ users, departments }: { users: any[], dep
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Yuboruvchi (Kim tomonidan)</label>
-          <select name="senderOrg" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2">
-            <option value="">Tanlang...</option>
-            {users.map((u: any) => (
-              <option key={u.id} value={u.name}>{u.name}</option>
-            ))}
+          <select name="senderOrg" defaultValue={currentUser || ""} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2">
+            {selectableUsers.length > 0 ? (
+              selectableUsers.map((u: any) => (
+                <option key={u.id} value={u.name}>{u.name}</option>
+              ))
+            ) : (
+              <option value={currentUser || ""}>{currentUser}</option>
+            )}
           </select>
         </div>
         <div>
