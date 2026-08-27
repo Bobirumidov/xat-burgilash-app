@@ -1,3 +1,4 @@
+﻿export const dynamic = 'force-dynamic';
 import { prisma } from "@/lib/prisma";
 import ReportClient from "./ReportClient";
 
@@ -31,3 +32,4 @@ export default async function ReportsPage({ searchParams }: { searchParams: Prom
     </div>
   );
 }
+
