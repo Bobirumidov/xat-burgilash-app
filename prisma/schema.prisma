@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String?
+  email     String   @unique
+  password  String
+  role      String   @default("USER")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  letters   Letter[] @relation("ResponsibleUser")
+}
+
+model Department {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  letters   Letter[]
+}
+
+model Letter {
+  id               String      @id @default(cuid())
+  type             String      
+  regNumber        String      
+  regDate          DateTime    @default(now())
+  senderOrg        String?
+  senderRegNumber  String?
+  senderDate       DateTime?
+  resolution       String?
+  receiverOrg      String?
+  outgoingType     String?     
+  subject          String
+  content          String?
+  directedTo       String?     
+  deadline         DateTime?
+  status           String
+  fileName         String?     
+  comment          String?
+  departmentId     String?
+  department       Department? @relation(fields: [departmentId], references: [id])
+  responsibleId    String?
+  responsibleUser  User?       @relation("ResponsibleUser", fields: [responsibleId], references: [id])
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+}
