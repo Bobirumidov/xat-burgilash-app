@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       await writeFile(path.join(uploadDir, fileName), buffer).catch(async () => {
         const fs = require('fs');
         fs.mkdirSync(uploadDir, { recursive: true });
-        await writeFile(path.join(uploadDir, fileName), buffer);
+        await writeFile(path.join(uploadDir, fileName!), buffer);
       });
     }
 
