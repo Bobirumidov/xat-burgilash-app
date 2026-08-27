@@ -18,11 +18,12 @@ conn.on('ready', () => {
     'sudo npm install -g pm2',
     'rm -rf xat-burgilash-app',
     'git clone https://github.com/Bobirumidov/xat-burgilash-app.git',
-    'cd xat-burgilash-app && npm install',
-    'cd xat-burgilash-app && npm run build',
-    'cd xat-burgilash-app && npx prisma db push',
-    'cd xat-burgilash-app && pm2 delete xat-app || true',
-    'cd xat-burgilash-app && pm2 start npm --name "xat-app" -- start',
+    'cd xat-burgilash-app',
+    'npm install',
+    'npm run build',
+    'npx prisma db push',
+    'pm2 delete xat-app || true',
+    'pm2 start npm --name "xat-app" -- start',
     'pm2 save',
     'sudo pm2 startup'
   ].join(' && ');

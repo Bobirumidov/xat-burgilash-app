@@ -1,5 +1,13 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export default function Sidebar() {
+  const pathname = usePathname();
+  
+  if (pathname === "/login") return null;
+
   return (
     <div className="w-64 h-screen bg-gray-800 text-white flex flex-col print:hidden">
       <div className="p-4 text-xl font-bold border-b border-gray-700">Xat_Burgilash.uz</div>
