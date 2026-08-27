@@ -1,9 +1,17 @@
-﻿export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { format } from "date-fns";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
 
 export default async function UsersPage() {
+  const session = await getServerSession(authOptions);
+  if ((session?.user as any)?.role !== "ADMIN") {
+    redirect("/");
+  }
+
   const users = await prisma.user.findMany({
     orderBy: { createdAt: "desc" }
   });

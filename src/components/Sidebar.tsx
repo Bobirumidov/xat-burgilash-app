@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Sidebar() {
+export default function Sidebar({ role }: { role?: string }) {
   const pathname = usePathname();
   
   if (pathname === "/login") return null;
@@ -17,7 +17,9 @@ export default function Sidebar() {
         <Link href="/outgoing" className="block p-2 rounded hover:bg-gray-700">Chiquvchi xatlar</Link>
         <Link href="/control" className="block p-2 rounded hover:bg-gray-700">Ijro nazorati</Link>
         <Link href="/reports" className="block p-2 rounded hover:bg-gray-700">Hisobotlar</Link>
-        <Link href="/users" className="block p-2 rounded hover:bg-gray-700">Foydalanuvchilar</Link>
+        {role === "ADMIN" && (
+          <Link href="/users" className="block p-2 rounded hover:bg-gray-700">Foydalanuvchilar</Link>
+        )}
       </nav>
       <div className="p-4 border-t border-gray-700">
         <a href="/api/auth/signout?callbackUrl=/login" className="block p-2 text-center text-red-400 border border-red-400 rounded hover:bg-red-400 hover:text-white transition">Tizimdan chiqish</a>

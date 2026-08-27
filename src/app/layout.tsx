@@ -1,13 +1,18 @@
-﻿import "./globals.css";
+import "./globals.css";
 import Sidebar from "@/components/Sidebar";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export const metadata = { title: "Xat Registratsiya" };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const session = await getServerSession(authOptions);
+  const role = (session?.user as any)?.role;
+
   return (
     <html lang="uz">
       <body className="flex h-screen bg-gray-100">
-        <Sidebar />
+        <Sidebar role={role} />
         <main className="flex-1 overflow-auto">
           {children}
         </main>
