@@ -60,7 +60,7 @@ export default function EditUserForm({ user }: { user: any }) {
         <input name="file" type="file" accept="image/*" className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
         {user.avatar && user.avatar !== "null" && user.avatar !== "undefined" && (
           <div className="mt-2 flex items-center gap-2">
-            <img src={`/uploads/${user.avatar}`} className="w-10 h-10 rounded-full object-cover border" />
+            <img src={`/api/uploads/${user.avatar}`} className="w-10 h-10 rounded-full object-cover border" />
             <span className="text-sm text-gray-500">Hozirgi rasm</span>
           </div>
         )}

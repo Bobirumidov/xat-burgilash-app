@@ -1,4 +1,4 @@
-﻿export const dynamic = 'force-dynamic';
+export const dynamic = 'force-dynamic';
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { format, differenceInDays } from "date-fns";
@@ -61,7 +61,7 @@ export default async function ControlPage() {
                   </td>
                   <td className="p-3 space-x-2 text-sm">
                     {letter.fileName && (
-                      <a href={`/uploads/${letter.fileName}`} target="_blank" className="text-purple-600 hover:underline">Fayl</a>
+                      <a href={`/api/uploads/${letter.fileName}`} target="_blank" className="text-purple-600 hover:underline">Fayl</a>
                     )}
                     <Link href={`/incoming/${letter.id}`} className="text-blue-600 hover:underline">Ko'rish</Link>
                     <Link href={`/incoming/${letter.id}/edit`} className="text-yellow-600 hover:underline">Tahrirlash</Link>

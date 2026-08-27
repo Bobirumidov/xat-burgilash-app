@@ -55,7 +55,7 @@ export default async function UsersPage() {
                 <td className="p-3">
                   <div className="flex items-center gap-3">
                     {user.avatar && user.avatar !== "null" && user.avatar !== "undefined" ? (
-                      <img src={`/uploads/${user.avatar}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover border" />
+                      <img src={`/api/uploads/${user.avatar}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover border" />
                     ) : (
                       <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500 uppercase shrink-0">
                         {user.name ? user.name.charAt(0) : "?"}
