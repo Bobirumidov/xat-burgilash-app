@@ -25,6 +25,16 @@ export default async function UsersPage() {
         </Link>
       </div>
 
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded shadow-sm">
+        <h3 className="font-bold text-blue-800">Tizim administratori uchun eslatma (Zaxira olish)</h3>
+        <p className="text-blue-700 text-sm mt-1">
+          Dastur va barcha ma'lumotlar bazasidan to'liq zaxira (backup) olish uchun serverga (192.168.104.50) SSH orqali ulaning. <b>xat-burgilash-app</b> papkasiga kiring va quyidagi buyruqni ishlating:
+        </p>
+        <code className="block bg-white text-blue-900 px-3 py-2 mt-2 rounded border border-blue-200 font-mono text-sm inline-block shadow-sm">
+          npm run backup
+        </code>
+      </div>
+
       <div className="bg-white rounded-lg shadow overflow-hidden">
         <table className="w-full text-left border-collapse">
           <thead>
