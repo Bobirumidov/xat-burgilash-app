@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 
-export default function EditIncomingForm({ letter }: { letter: any }) {
+export default function EditIncomingForm({ letter, users }: { letter: any, users: any[] }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -63,7 +63,12 @@ export default function EditIncomingForm({ letter }: { letter: any }) {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Kimga yo'naltirilgani</label>
-          <input defaultValue={letter.directedTo || ""} name="directedTo" type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" />
+          <select defaultValue={letter.directedTo || ""} name="directedTo" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2">
+            <option value="">Tanlang...</option>
+            {users.map((u: any) => (
+              <option key={u.id} value={u.name}>{u.name}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Rezolyutsiya</label>

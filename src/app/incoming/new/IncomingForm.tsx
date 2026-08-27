@@ -50,7 +50,12 @@ export default function IncomingForm({ users, departments }: { users: any[], dep
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Kimga yo'naltirilgani</label>
-          <input name="directedTo" type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" />
+          <select name="directedTo" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2">
+            <option value="">Tanlang...</option>
+            {users.map((u: any) => (
+              <option key={u.id} value={u.name}>{u.name}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Rezolyutsiya</label>

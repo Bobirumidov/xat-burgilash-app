@@ -8,6 +8,8 @@ export default async function EditOutgoingLetterPage({ params }: { params: Promi
     where: { id: resolvedParams.id }
   });
 
+  const users = await prisma.user.findMany({ select: { id: true, name: true } });
+
   if (!letter) {
     return <div className="p-8">Xat topilmadi</div>;
   }
@@ -18,7 +20,7 @@ export default async function EditOutgoingLetterPage({ params }: { params: Promi
         <h1 className="text-3xl font-bold">Chiquvchi xatni tahrirlash</h1>
         <Link href={`/outgoing`} className="bg-gray-600 text-white px-4 py-2 rounded shadow hover:bg-gray-700">Orqaga</Link>
       </div>
-      <EditOutgoingForm letter={letter} />
+      <EditOutgoingForm letter={letter} users={users} />
     </div>
   );
 }

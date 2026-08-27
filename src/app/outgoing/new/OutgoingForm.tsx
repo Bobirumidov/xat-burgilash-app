@@ -29,6 +29,15 @@ export default function OutgoingForm({ users, departments }: { users: any[], dep
           <input required name="regNumber" type="text" placeholder="Masalan: 29-01" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" />
         </div>
         <div>
+          <label className="block text-sm font-medium text-gray-700">Yuboruvchi (Kim tomonidan)</label>
+          <select name="senderOrg" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2">
+            <option value="">Tanlang...</option>
+            {users.map((u: any) => (
+              <option key={u.id} value={u.name}>{u.name}</option>
+            ))}
+          </select>
+        </div>
+        <div>
           <label className="block text-sm font-medium text-gray-700">Qabul qiluvchi tashkilot</label>
           <input required name="receiverOrg" type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" />
         </div>

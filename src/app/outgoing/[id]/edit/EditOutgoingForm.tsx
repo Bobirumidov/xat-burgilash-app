@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export default function EditOutgoingForm({ letter }: { letter: any }) {
+export default function EditOutgoingForm({ letter, users }: { letter: any, users: any[] }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -36,6 +36,15 @@ export default function EditOutgoingForm({ letter }: { letter: any }) {
         <div className="col-span-2">
           <label className="block text-sm font-medium text-gray-700">Registratsiya raqami</label>
           <input required defaultValue={letter.regNumber} name="regNumber" type="text" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2" />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-gray-700">Yuboruvchi (Kim tomonidan)</label>
+          <select defaultValue={letter.senderOrg || ""} name="senderOrg" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm border p-2">
+            <option value="">Tanlang...</option>
+            {users.map((u: any) => (
+              <option key={u.id} value={u.name}>{u.name}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Qabul qiluvchi tashkilot</label>

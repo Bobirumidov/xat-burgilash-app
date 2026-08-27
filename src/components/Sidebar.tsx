@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export default function Sidebar({ role, userName }: { role?: string, userName?: string }) {
+export default function Sidebar({ role, userName, avatar }: { role?: string, userName?: string, avatar?: string | null }) {
   const pathname = usePathname();
   
   if (pathname === "/login") return null;
@@ -24,9 +24,13 @@ export default function Sidebar({ role, userName }: { role?: string, userName?: 
       <div className="p-4 border-t border-gray-700 space-y-3">
         {userName && (
           <div className="text-sm text-gray-300 flex items-center gap-2 px-2">
-            <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center font-bold text-white uppercase">
-              {userName.charAt(0)}
-            </div>
+            {avatar ? (
+              <img src={`/uploads/${avatar}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover border border-gray-600" />
+            ) : (
+              <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center font-bold text-white uppercase shrink-0">
+                {userName.charAt(0)}
+              </div>
+            )}
             <div className="truncate" title={userName}>{userName}</div>
           </div>
         )}

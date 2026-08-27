@@ -17,8 +17,7 @@ export default function EditUserForm({ user }: { user: any }) {
     
     const res = await fetch(`/api/users/${user.id}`, {
       method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: formData,
     });
     
     if (res.ok) {
@@ -55,6 +54,16 @@ export default function EditUserForm({ user }: { user: any }) {
           <option value="USER">Foydalanuvchi</option>
           <option value="MANAGEMENT">Rahbariyat</option>
         </select>
+      </div>
+      <div className="border-t pt-4">
+        <label className="block text-sm font-medium text-gray-700 mb-1">Rasm yuklash (Avatar)</label>
+        <input name="file" type="file" accept="image/*" className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+        {user.avatar && (
+          <div className="mt-2 flex items-center gap-2">
+            <img src={`/uploads/${user.avatar}`} className="w-10 h-10 rounded-full object-cover border" />
+            <span className="text-sm text-gray-500">Hozirgi rasm</span>
+          </div>
+        )}
       </div>
       
       <div className="pt-4 flex justify-end">
