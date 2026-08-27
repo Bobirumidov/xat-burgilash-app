@@ -24,7 +24,7 @@ export default function Sidebar({ role, userName, avatar }: { role?: string, use
       <div className="p-4 border-t border-gray-700 space-y-3">
         {userName && (
           <div className="text-sm text-gray-300 flex items-center gap-2 px-2">
-            {avatar ? (
+            {avatar && avatar !== "null" && avatar !== "undefined" ? (
               <img src={`/uploads/${avatar}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover border border-gray-600" />
             ) : (
               <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center font-bold text-white uppercase shrink-0">

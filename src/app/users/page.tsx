@@ -54,7 +54,7 @@ export default async function UsersPage() {
                 <td className="p-3">{idx + 1}</td>
                 <td className="p-3">
                   <div className="flex items-center gap-3">
-                    {user.avatar ? (
+                    {user.avatar && user.avatar !== "null" && user.avatar !== "undefined" ? (
                       <img src={`/uploads/${user.avatar}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover border" />
                     ) : (
                       <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-500 uppercase shrink-0">
